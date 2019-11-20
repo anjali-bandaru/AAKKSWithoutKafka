@@ -17,7 +17,7 @@ module.exports = {
     'kafka_host' : 'localhost',
     'kafka_port' : '2181',
 
-    'redis_host' : '127.0.0.1',
+    'redis_host' : 'localhost',
     //'redis_host' : 'cmpetwitter-0001-001.qwkoiy.0001.use1.cache.amazonaws.com',
     //'redis_host' : 'redistest-001.qwkoiy.0001.use1.cache.amazonaws.com',
     //'redis_host' : 'redistest.qwkoiy.ng.0001.use1.cache.amazonaws.com',

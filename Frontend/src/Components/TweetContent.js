@@ -5,6 +5,8 @@ import swal from 'sweetalert';
 import FollowersTweets from "./FollowersTweets.js";
 const settings = require("../config/settings.js");
 
+var faker = require('faker');
+
 export class TweetContent extends Component {
     state = {
         allTweets : []
@@ -45,6 +47,39 @@ export class TweetContent extends Component {
             });
     }*/
 
+    /*generateFakeData = () => {
+        let postURL = "http://"+settings.hostname+":"+settings.port+"/writeATweet"; 
+        for(let i=0; i< 1000; i++){
+            let fakeNumber = faker.random.number({'min':1, 'max':10});
+            let fakeUserId = faker.random.number({'min':1, 'max':10000});
+            let fakeText = faker.random.words(fakeNumber);
+            let data = {userId : fakeUserId, tweetText :fakeText};
+            if(fakeText){
+                //console.log(fakeText);
+                axios({
+                    method: 'post',
+                    url: postURL,        
+                    data: data,
+                    config: { headers: { 'Content-Type': 'multipart/form-data' } },
+                    //headers: {"Authorization" : `Bearer ${token}`} 
+                })
+                    .then((response) => {
+                        if (response.status >= 500) {
+                            throw new Error("Bad response from server");
+                        }
+                        return response.data;
+                    })
+                    .then((responseData) => {
+                        console.log(responseData.message);
+                        
+                    }).catch(function (err) {
+                        console.log(err)
+                    });
+            }
+                
+        }
+    };*/
+
     writeATweet = (tweetObj) =>{
         //TODO :get userId from local storage
         let data = {userId : 123, tweetText :tweetObj.tweetText};
@@ -83,7 +118,7 @@ export class TweetContent extends Component {
     }
 
     getUserTweets = () => {
-        let data = {userId : 123};
+        let data = {userId : 1000};
         //let data = {userId : 123};
         let postURL = "http://"+settings.hostname+":"+settings.port+"/getUserTweets";
         axios.defaults.withCredentials = true;
@@ -120,6 +155,7 @@ export class TweetContent extends Component {
                     <button className = "btn btn-success" type="submit">Submit</button>
                 </form>
                 <Button onClick = {this.getUserTweets}>Get Tweets</Button>
+                <Button onClick = {this.generateFakeData}>generateFakeData</Button>
                 {allTweetsComponent}
             </div>
         );
