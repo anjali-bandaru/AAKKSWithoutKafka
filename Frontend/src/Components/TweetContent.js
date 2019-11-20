@@ -118,7 +118,7 @@ export class TweetContent extends Component {
     }
 
     getUserTweets = () => {
-        let data = {userId : 1000};
+        let data = {userId : 123};
         //let data = {userId : 123};
         let postURL = "http://"+settings.hostname+":"+settings.port+"/getUserTweets";
         axios.defaults.withCredentials = true;
